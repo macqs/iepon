@@ -3,18 +3,18 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>IEPON 한글 PDF 내장폰트 버전</title>
+  <title>IEPON 한글 PDF 커스텀 폰트</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>IEPON 내장 한글 PDF 테스트</h1>
-    <button id="downloadKoreanPdfBtn">📄 한글 PDF 다운로드</button>
+    <h1>IEPON 한글 PDF 출력</h1>
+    <button id="downloadKoreanPdfBtn">📄 PDF 다운로드</button>
   </div>
 
-  <!-- 커스텀 빌드된 jsPDF (ChosunGu 내장됨 가정) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="jspdf.custom.js"></script>
-  <script src="script.js" type="module"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>

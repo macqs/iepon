@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("downloadKoreanPdfBtn");
   if (btn) {
     btn.addEventListener("click", () => {
-      const doc = new window.jspdf.jsPDF();
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
       console.log("📋 등록된 폰트 목록:", doc.getFontList());
-
       doc.setFont("ChosunGu", "normal");
-      doc.text("✅ 성공! 내장 폰트로 한글 출력 OK", 10, 20);
-      doc.save("iepon_korean_final.pdf");
+      doc.text("✅ 드디어 성공! IEPON 시스템 한글 PDF 출력 완성!", 10, 20);
+      doc.save("iepon_final_korean.pdf");
     });
   }
 });
