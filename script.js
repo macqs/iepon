@@ -104,3 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadStudents();
 });
+
+// 팝업 안내 닫기 기능
+window.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('popupOverlay');
+  const closeBtn = document.getElementById('closePopupBtn');
+  closeBtn.addEventListener('click', () => popup.style.display = 'none');
+});

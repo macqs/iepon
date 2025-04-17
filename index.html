@@ -3,41 +3,29 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>IEPON 통합 시스템</title>
+  <title>IEPON 탭형 시스템</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    #capture-area {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px #ccc;
-      margin-bottom: 20px;
-    }
-    textarea, select, input {
-      width: 100%; margin-bottom: 10px;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
-    <h1>IEPON 시스템 (Firebase + PDF)</h1>
+    <h1>IEPON 통합 플랫폼 (탭형 + Firebase + PDF)</h1>
 
-    <div>
-      <input type="text" id="newStudentName" placeholder="학생 이름 추가" />
-      <button id="addStudentBtn">➕ 추가</button>
+    <div class="student-entry">
+      <input type="text" id="newStudentName" placeholder="학생 이름 추가">
+      <button id="addStudentBtn">➕ 학생 추가</button>
     </div>
 
-    <div>
+    <div class="selectors">
       <label>학생 선택</label>
       <select id="studentSelect"><option value="">선택</option></select>
 
-      <label>학기</label>
+      <label>학기 선택</label>
       <select id="semesterSelect">
         <option>1학기</option><option>2학기</option>
       </select>
 
-      <label>월</label>
+      <label>월 선택</label>
       <select id="monthSelect">
         <option>3월</option><option>4월</option><option>5월</option><option>6월</option>
         <option>7월</option><option>8월</option><option>9월</option><option>10월</option>
@@ -45,30 +33,57 @@
       </select>
     </div>
 
-    <div id="capture-area">
-      <h2>📋 IEP 내용</h2>
-      <label>현행수준</label><textarea id="currentLevel"></textarea>
-      <label>학기 목표</label><textarea id="semesterGoal"></textarea>
-      <label>학기 평가</label><textarea id="semesterEval"></textarea>
-      <label>월 목표</label><textarea id="monthGoal"></textarea>
-      <label>교육 내용</label><textarea id="monthContent"></textarea>
-      <label>교육 방법</label><textarea id="monthMethod"></textarea>
-      <label>평가 준거</label><textarea id="monthCriteria"></textarea>
-      <label>월 평가</label><textarea id="monthEval"></textarea>
-      <label>강화 포인트</label><input type="number" id="reinforcePoint" value="0" />
-      <label>특이사항/상담</label><textarea id="specialNote"></textarea>
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="tab-semester">🗓 학기 입력</button>
+      <button class="tab-btn" data-tab="tab-month">📆 월별 입력</button>
+      <button class="tab-btn" data-tab="tab-reinforce">⭐ 강화·상담</button>
     </div>
 
-    <div>
-      <button id="saveBtn">💾 저장</button>
-      <button id="download">📄 PDF 다운로드</button>
-      <div id="status"></div>
-    </div>
+    <form id="iepForm">
+      <div class="tab-section active" id="tab-semester">
+        <h2>학기 입력</h2>
+        <label>현행수준</label><textarea id="currentLevel"></textarea>
+        <label>학기 목표</label><textarea id="semesterGoal"></textarea>
+        <label>학기 평가</label><textarea id="semesterEval"></textarea>
+      </div>
+
+      <div class="tab-section" id="tab-month">
+        <h2>월별 계획</h2>
+        <label>교육 목표</label><textarea id="monthGoal"></textarea>
+        <label>교육 내용</label><textarea id="monthContent"></textarea>
+        <label>교육 방법</label><textarea id="monthMethod"></textarea>
+        <label>평가 준거</label><textarea id="monthCriteria"></textarea>
+        <label>교육 평가</label><textarea id="monthEval"></textarea>
+      </div>
+
+      <div class="tab-section" id="tab-reinforce">
+        <h2>⭐ 강화기록 / 상담메모</h2>
+        <label>강화 포인트</label><input type="number" id="reinforcePoint" value="0">
+        <label>특이사항 / 상담 내용</label><textarea id="specialNote"></textarea>
+      </div>
+
+      <div class="button-group">
+        <button type="button" id="saveBtn">💾 저장</button>
+        <button type="button" id="downloadPdfBtn">📄 PDF 다운로드</button>
+        <div id="status"></div>
+      </div>
+    </form>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="script.js"></script>
+
+<!-- Firebase 차단 안내 팝업 -->
+<div id="popupOverlay" class="popup-overlay">
+  <div class="popup-box">
+    <h3>🔒 Firebase 연결이 차단되었나요?</h3>
+    <p>일부 브라우저 확장 프로그램(AdBlock 등)이 시스템 작동을 방해할 수 있어요.<br>
+    <strong>시크릿 모드</strong>나 <strong>확장 프로그램 비활성화</strong> 후 다시 접속해보세요!</p>
+    <button id="closePopupBtn">확인</button>
+  </div>
+</div>
+
 </body>
 </html>
