@@ -1,55 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
   padding: 20px;
 }
 
 .container {
-  max-width: 960px;
-  margin: auto;
-  background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 30px;
+  background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
   color: #4CAF50;
-  margin-bottom: 30px;
 }
 
 h2 {
-  color: #333;
-  margin-top: 30px;
+  font-size: 24px;
+  margin: 20px 0;
+  color: #4CAF50;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 15px 0 10px 0;
 }
 
 label {
   font-weight: bold;
-  display: block;
   margin-top: 15px;
+  display: block;
+  color: #333;
 }
 
-textarea, select {
+input, select, textarea {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  resize: vertical;
+  font-size: 15px;
 }
 
 button {
-  margin-top: 20px;
-  padding: 12px 20px;
+  padding: 12px 16px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
   background-color: #4CAF50;
   color: white;
   font-size: 16px;
-  border: none;
-  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -57,90 +69,79 @@ button:hover {
   background-color: #45a049;
 }
 
-.selectors {
+.tab-menu {
   display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-
-.timeline-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-  border-left: 4px solid #4CAF50;
-}
-.timeline-list li {
-  margin-bottom: 12px;
-  padding-left: 12px;
-  position: relative;
-}
-.timeline-list li::before {
-  content: '';
-  width: 12px;
-  height: 12px;
-  background-color: #4CAF50;
-  border-radius: 50%;
-  position: absolute;
-  left: -8px;
-  top: 4px;
-}
-
-.section-card {
-  border: 1px solid #ddd;
-  background-color: #fafafa;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.section-card h2 {
-  margin-top: 0;
-  color: #4CAF50;
-  font-size: 18px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 5px;
-  margin-bottom: 15px;
-}
-
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 10px;
-  margin-top: 20px;
-}
-
-#status {
-  margin-top: 15px;
-  font-weight: bold;
-  text-align: center;
-  color: #2e7d32;
-}
-
-.tab-buttons {
-  display: flex;
+  margin-bottom: 25px;
   justify-content: center;
-  gap: 10px;
-  margin: 30px 0 20px 0;
-  flex-wrap: wrap;
 }
-.tab-btn {
-  padding: 10px 16px;
-  font-size: 15px;
+
+.tab-menu button {
   background-color: #ddd;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  color: #333;
+  width: 160px;
+  text-align: center;
+  font-size: 16px;
 }
-.tab-btn.active {
+
+.tab-menu button.active {
   background-color: #4CAF50;
   color: white;
 }
+
 .tab-section {
   display: none;
 }
+
 .tab-section.active {
   display: block;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+  .tab-menu {
+    flex-wrap: wrap;
+  }
+  .tab-menu button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
 }
