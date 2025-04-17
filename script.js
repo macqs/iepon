@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 탭 전환 예시 (기능 유지용)
+  // 탭 전환 예시
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -10,11 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // PDF 다운로드 작동 확인
-  document.getElementById('downloadPdfBtn').addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.text("IEPON PDF 테스트 작동 확인 완료 ✅", 10, 20);
-    doc.save("iepon_sample.pdf");
-  });
+  // PDF 다운로드
+  const pdfBtn = document.getElementById("downloadPdfBtn");
+  if (pdfBtn) {
+    pdfBtn.addEventListener("click", () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("🎉 PDF 다운로드가 작동합니다!", 10, 20);
+      doc.save("iepon_test.pdf");
+    });
+  }
+
+  // 학생 드롭다운 초기화
+  const studentSelect = document.getElementById("studentSelect");
+  if (studentSelect) {
+    studentSelect.innerHTML = '<option>테스트 학생</option>';
+  }
 });
