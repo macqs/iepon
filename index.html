@@ -2,94 +2,28 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>IEPON 시스템</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>IEPON 테스트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>IEPON: 개별화교육계획 시스템</h1>
-
-    <div class="student-entry">
-      <label>학생 이름 추가</label>
-      <input type="text" id="newStudentName" placeholder="이름 입력">
-      <button id="addStudentBtn">학생 추가</button>
-    </div>
-
-    <div class="selectors">
-      <label>학생 선택</label>
-      <select id="studentSelect"><option value="">학생 선택</option></select>
-
-      <label>학기 선택</label>
-      <select id="semesterSelect">
-        <option value="1학기">1학기</option>
-        <option value="2학기">2학기</option>
-      </select>
-
-      <label>월 선택</label>
-      <select id="monthSelect">
-        <option value="">--</option>
-        <option>3월</option><option>4월</option><option>5월</option><option>6월</option>
-        <option>7월</option><option>8월</option><option>9월</option><option>10월</option>
-        <option>11월</option><option>12월</option><option>1월</option><option>2월</option>
-      </select>
-    </div>
-
+    <h1>IEPON 테스트 페이지</h1>
     <div class="tab-buttons">
-      <button class="tab-btn active" data-tab="tab-semester">🗓 학기 입력</button>
-      <button class="tab-btn" data-tab="tab-month">📆 월별 입력</button>
-      <button class="tab-btn" data-tab="tab-reinforce">⭐ 강화·상담</button>
-      <button class="tab-btn" data-tab="tab-summary">📄 출력/요약</button>
+      <button class="tab-btn active" data-tab="tab-1">탭 1</button>
+      <button class="tab-btn" data-tab="tab-2">탭 2</button>
+    </div>
+    <div class="tab-section active" id="tab-1">
+      <p>여기는 탭 1입니다.</p>
+    </div>
+    <div class="tab-section" id="tab-2">
+      <p>여기는 탭 2입니다.</p>
     </div>
 
-    <form id="iepForm">
-      <div class="tab-section active" id="tab-semester">
-        <div class="section-card">
-          <h2>학기별 계획</h2>
-          <label>현행수준</label><textarea id="currentLevel"></textarea>
-          <label>학기 목표</label><textarea id="semesterGoal"></textarea>
-          <label>학기 평가</label><textarea id="semesterEval"></textarea>
-        </div>
-      </div>
-
-      <div class="tab-section" id="tab-month">
-        <div class="section-card">
-          <h2>월별 계획</h2>
-          <label>교육 목표</label><textarea id="monthGoal"></textarea>
-          <label>교육 내용</label><textarea id="monthContent"></textarea>
-          <label>교육 방법</label><textarea id="monthMethod"></textarea>
-          <label>평가 준거</label><textarea id="monthCriteria"></textarea>
-          <label>교육 평가</label><textarea id="monthEval"></textarea>
-        </div>
-      </div>
-
-      <div class="tab-section" id="tab-reinforce">
-        <div class="section-card">
-          <h2>강화 포인트</h2>
-          <label>이번 달 포인트</label><input type="number" id="reinforcePoint" value="0">
-        </div>
-        <div class="section-card">
-          <h2>특이사항 / 상담 메모</h2><textarea id="specialNote"></textarea>
-        </div>
-      </div>
-
-      <div class="tab-section" id="tab-summary">
-        <div style="margin-top: 40px;">
-          <h2>📋 월별 목표 타임라인</h2>
-          <ul id="timelineList" class="timeline-list"></ul>
-        </div>
-      </div>
-
-      <div class="button-group">
-        <button type="submit">💾 저장하기</button>
-        <button type="button" id="downloadPdfBtn">📄 IEP PDF 다운로드</button>
-        <button type="button" id="downloadCsvBtn">📤 전체 기록 CSV 다운로드</button>
-        <button type="button" id="downloadSummaryPdfBtn">📄 학기 요약 리포트 PDF</button>
-      </div>
-
-      <div id="status"></div>
-    </form>
+    <div style="margin-top: 30px;">
+      <button id="downloadPdfBtn">📄 PDF 테스트 다운로드</button>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
