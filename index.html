@@ -10,6 +10,12 @@
   <div class="container">
     <h1>IEPON: 개별화교육계획 시스템</h1>
 
+    <div class="student-entry">
+      <label>학생 이름 추가</label>
+      <input type="text" id="newStudentName" placeholder="이름 입력">
+      <button id="addStudentBtn">학생 추가</button>
+    </div>
+
     <div class="selectors">
       <label>학생 선택</label>
       <select id="studentSelect">
@@ -40,8 +46,18 @@
       </select>
     </div>
 
-    <form id="iepForm">
-      <h2>학기별 계획</h2>
+    
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="tab-semester">🗓 학기 입력</button>
+      <button class="tab-btn" data-tab="tab-month">📆 월별 입력</button>
+      <button class="tab-btn" data-tab="tab-reinforce">⭐ 강화·상담</button>
+      <button class="tab-btn" data-tab="tab-summary">📄 출력/요약</button>
+    </div>
+
+<form id="iepForm">
+      <div class="tab-section active" id="tab-semester">
+<div class="section-card">
+<h2>학기별 계획</h2>
       <label>현행수준</label>
       <textarea id="currentLevel" rows="2"></textarea>
 
@@ -51,7 +67,12 @@
       <label>학기 평가</label>
       <textarea id="semesterEval" rows="2"></textarea>
 
-      <h2>월별 계획</h2>
+      </div>
+</div>
+</div>
+<div class="tab-section" id="tab-month">
+<div class="section-card">
+<h2>월별 계획</h2>
       <label>교육 목표</label>
       <textarea id="monthGoal" rows="2"></textarea>
 
@@ -67,10 +88,49 @@
       <label>교육 평가</label>
       <textarea id="monthEval" rows="2"></textarea>
 
-      <button type="submit">저장하기</button>
+      
+      </div>
+</div>
+</div>
+<div class="tab-section" id="tab-reinforce">
+<div class="section-card">
+<h2>강화 포인트</h2>
+      <label>이번 달 포인트</label>
+      <input type="number" id="reinforcePoint" min="0" value="0">
+
+      <div style="margin-top:30px;">
+        <canvas id="reinforceChart" width="400" height="200"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      
+      </div>
+<div class="section-card">
+<h2>특이사항 / 상담 메모</h2>
+      <textarea id="specialNote" rows="3" placeholder="학생의 행동, 감정 상태, 상담 기록 등을 자유롭게 메모하세요."></textarea>
+
+      </div>
+<div class="button-group">
+<button type="submit">💾 저장하기</button>
     </form>
 
+    <div style="text-align:center; margin-top:30px;">
+      <button id="downloadPdfBtn">📄 IEP PDF 다운로드</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
     <div id="status" style="margin-top:20px; font-weight:bold;"></div>
+    
+    <div class="button-group">
+      <button id="downloadSummaryPdfBtn">📄 학기 요약 리포트 PDF</button>
+    </div>
+
+
+      <button id="downloadCsvBtn">📤 전체 기록 CSV 다운로드</button>
+    </div>
+
   </div>
 
   <script src="script.js"></script>

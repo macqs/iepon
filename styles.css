@@ -63,3 +63,84 @@ button:hover {
   margin-bottom: 30px;
   flex-wrap: wrap;
 }
+
+.timeline-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  border-left: 4px solid #4CAF50;
+}
+.timeline-list li {
+  margin-bottom: 12px;
+  padding-left: 12px;
+  position: relative;
+}
+.timeline-list li::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  position: absolute;
+  left: -8px;
+  top: 4px;
+}
+
+.section-card {
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.section-card h2 {
+  margin-top: 0;
+  color: #4CAF50;
+  font-size: 18px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#status {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+  color: #2e7d32;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0 20px 0;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 10px 16px;
+  font-size: 15px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.tab-btn.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.tab-section {
+  display: none;
+}
+.tab-section.active {
+  display: block;
+}
