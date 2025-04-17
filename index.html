@@ -3,17 +3,31 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>IEPON 기본 폰트 PDF</title>
+  <title>IEPON html2pdf 테스트</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    #capture-area {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px #ccc;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>IEPON PDF 테스트 (기본 폰트)</h1>
-    <button id="downloadKoreanPdfBtn">📄 PDF 다운로드</button>
+    <h1>IEPON PDF 생성 (html2pdf.js)</h1>
+    <div id="capture-area">
+      <h2>✅ 한글 PDF 테스트</h2>
+      <p>이 문장은 html2pdf.js를 사용해 PDF로 출력됩니다.</p>
+      <p>안녕하세요, IEPON 시스템에서 출력된 문서입니다.</p>
+    </div>
+    <button id="download">📄 PDF 다운로드</button>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- html2pdf CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
