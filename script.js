@@ -15,17 +15,67 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 학생 추가
-document.getElementById('addStudentBtn').addEventListener('click', async () => {
-  const name = document.getElementById('newStudentName').value.trim();
-  if (name) {
-    await setDoc(doc(db, "students", name), { name: name });
-    loadStudents();
-    document.getElementById('newStudentName').value = '';
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  // 탭 전환 기능
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // 학생 불러오기
+  loadStudents();
+
+  // 이벤트 등록
+  document.getElementById('addStudentBtn').addEventListener('click', async () => {
+    const name = document.getElementById('newStudentName').value.trim();
+    if (name) {
+      await setDoc(doc(db, "students", name), { name: name });
+      loadStudents();
+      document.getElementById('newStudentName').value = '';
+    }
+  });
+
+  document.getElementById('iepForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const student = document.getElementById('studentSelect').value;
+    const semester = document.getElementById('semesterSelect').value;
+    const month = document.getElementById('monthSelect').value;
+
+    const data = {
+      currentLevel: document.getElementById('currentLevel').value,
+      semesterGoal: document.getElementById('semesterGoal').value,
+      semesterEval: document.getElementById('semesterEval').value,
+      monthGoal: document.getElementById('monthGoal').value,
+      monthContent: document.getElementById('monthContent').value,
+      monthMethod: document.getElementById('monthMethod').value,
+      monthCriteria: document.getElementById('monthCriteria').value,
+      monthEval: document.getElementById('monthEval').value,
+      reinforcePoint: document.getElementById('reinforcePoint').value,
+      specialNote: document.getElementById('specialNote').value
+    };
+
+    const key = `${student}_${semester}_${month}`;
+    await setDoc(doc(db, "iep_records", key), data);
+    document.getElementById('status').innerText = '✅ Firebase에 저장되었습니다!';
+    renderTimeline();
+  });
+
+  document.getElementById('studentSelect').addEventListener('change', loadIEP);
+  document.getElementById('semesterSelect').addEventListener('change', loadIEP);
+  document.getElementById('monthSelect').addEventListener('change', () => {
+    const monthGoal = document.getElementById('monthGoal');
+    const semesterGoal = document.getElementById('semesterGoal').value;
+    if (!monthGoal.value && semesterGoal) {
+      monthGoal.value = semesterGoal + " (에서 파생된 월 목표)";
+    }
+    loadIEP();
+  });
 });
 
-// 학생 목록 불러오기
 async function loadStudents() {
   const studentSelect = document.getElementById('studentSelect');
   studentSelect.innerHTML = '<option value="">학생 선택</option>';
@@ -39,33 +89,6 @@ async function loadStudents() {
   });
 }
 
-// 저장
-document.getElementById('iepForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const student = document.getElementById('studentSelect').value;
-  const semester = document.getElementById('semesterSelect').value;
-  const month = document.getElementById('monthSelect').value;
-
-  const data = {
-    currentLevel: document.getElementById('currentLevel').value,
-    semesterGoal: document.getElementById('semesterGoal').value,
-    semesterEval: document.getElementById('semesterEval').value,
-    monthGoal: document.getElementById('monthGoal').value,
-    monthContent: document.getElementById('monthContent').value,
-    monthMethod: document.getElementById('monthMethod').value,
-    monthCriteria: document.getElementById('monthCriteria').value,
-    monthEval: document.getElementById('monthEval').value,
-    reinforcePoint: document.getElementById('reinforcePoint').value,
-    specialNote: document.getElementById('specialNote').value
-  };
-
-  const key = `${student}_${semester}_${month}`;
-  await setDoc(doc(db, "iep_records", key), data);
-  document.getElementById('status').innerText = '✅ Firebase에 저장되었습니다!';
-  renderTimeline();
-});
-
-// 불러오기
 async function loadIEP() {
   const student = document.getElementById('studentSelect').value;
   const semester = document.getElementById('semesterSelect').value;
@@ -96,18 +119,6 @@ async function loadIEP() {
   renderTimeline();
 }
 
-document.getElementById('studentSelect').addEventListener('change', loadIEP);
-document.getElementById('semesterSelect').addEventListener('change', loadIEP);
-document.getElementById('monthSelect').addEventListener('change', () => {
-  const monthGoal = document.getElementById('monthGoal');
-  const semesterGoal = document.getElementById('semesterGoal').value;
-  if (!monthGoal.value && semesterGoal) {
-    monthGoal.value = semesterGoal + " (에서 파생된 월 목표)";
-  }
-  loadIEP();
-});
-
-// 타임라인 렌더링
 async function renderTimeline() {
   const student = document.getElementById('studentSelect').value;
   const semester = document.getElementById('semesterSelect').value;
@@ -130,18 +141,3 @@ async function renderTimeline() {
     }
   }
 }
-
-// 탭 전환 기능
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
-});
-
-// 초기 실행
-window.addEventListener('DOMContentLoaded', () => {
-  loadStudents();
-});
