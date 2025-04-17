@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,9 +19,7 @@
 
     <div class="selectors">
       <label>학생 선택</label>
-      <select id="studentSelect">
-        <option value="">학생 선택</option>
-      </select>
+      <select id="studentSelect"><option value="">학생 선택</option></select>
 
       <label>학기 선택</label>
       <select id="semesterSelect">
@@ -31,22 +30,12 @@
       <label>월 선택</label>
       <select id="monthSelect">
         <option value="">--</option>
-        <option value="3월">3월</option>
-        <option value="4월">4월</option>
-        <option value="5월">5월</option>
-        <option value="6월">6월</option>
-        <option value="7월">7월</option>
-        <option value="8월">8월</option>
-        <option value="9월">9월</option>
-        <option value="10월">10월</option>
-        <option value="11월">11월</option>
-        <option value="12월">12월</option>
-        <option value="1월">1월</option>
-        <option value="2월">2월</option>
+        <option>3월</option><option>4월</option><option>5월</option><option>6월</option>
+        <option>7월</option><option>8월</option><option>9월</option><option>10월</option>
+        <option>11월</option><option>12월</option><option>1월</option><option>2월</option>
       </select>
     </div>
 
-    
     <div class="tab-buttons">
       <button class="tab-btn active" data-tab="tab-semester">🗓 학기 입력</button>
       <button class="tab-btn" data-tab="tab-month">📆 월별 입력</button>
@@ -54,85 +43,55 @@
       <button class="tab-btn" data-tab="tab-summary">📄 출력/요약</button>
     </div>
 
-<form id="iepForm">
+    <form id="iepForm">
       <div class="tab-section active" id="tab-semester">
-<div class="section-card">
-<h2>학기별 계획</h2>
-      <label>현행수준</label>
-      <textarea id="currentLevel" rows="2"></textarea>
-
-      <label>학기 목표</label>
-      <textarea id="semesterGoal" rows="2"></textarea>
-
-      <label>학기 평가</label>
-      <textarea id="semesterEval" rows="2"></textarea>
-
-      </div>
-</div>
-</div>
-<div class="tab-section" id="tab-month">
-<div class="section-card">
-<h2>월별 계획</h2>
-      <label>교육 목표</label>
-      <textarea id="monthGoal" rows="2"></textarea>
-
-      <label>교육 내용</label>
-      <textarea id="monthContent" rows="2"></textarea>
-
-      <label>교육 방법</label>
-      <textarea id="monthMethod" rows="2"></textarea>
-
-      <label>평가 준거</label>
-      <textarea id="monthCriteria" rows="2"></textarea>
-
-      <label>교육 평가</label>
-      <textarea id="monthEval" rows="2"></textarea>
-
-      
-      </div>
-</div>
-</div>
-<div class="tab-section" id="tab-reinforce">
-<div class="section-card">
-<h2>강화 포인트</h2>
-      <label>이번 달 포인트</label>
-      <input type="number" id="reinforcePoint" min="0" value="0">
-
-      <div style="margin-top:30px;">
-        <canvas id="reinforceChart" width="400" height="200"></canvas>
+        <div class="section-card">
+          <h2>학기별 계획</h2>
+          <label>현행수준</label><textarea id="currentLevel"></textarea>
+          <label>학기 목표</label><textarea id="semesterGoal"></textarea>
+          <label>학기 평가</label><textarea id="semesterEval"></textarea>
+        </div>
       </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-      
+      <div class="tab-section" id="tab-month">
+        <div class="section-card">
+          <h2>월별 계획</h2>
+          <label>교육 목표</label><textarea id="monthGoal"></textarea>
+          <label>교육 내용</label><textarea id="monthContent"></textarea>
+          <label>교육 방법</label><textarea id="monthMethod"></textarea>
+          <label>평가 준거</label><textarea id="monthCriteria"></textarea>
+          <label>교육 평가</label><textarea id="monthEval"></textarea>
+        </div>
       </div>
-<div class="section-card">
-<h2>특이사항 / 상담 메모</h2>
-      <textarea id="specialNote" rows="3" placeholder="학생의 행동, 감정 상태, 상담 기록 등을 자유롭게 메모하세요."></textarea>
 
+      <div class="tab-section" id="tab-reinforce">
+        <div class="section-card">
+          <h2>강화 포인트</h2>
+          <label>이번 달 포인트</label><input type="number" id="reinforcePoint" value="0">
+        </div>
+        <div class="section-card">
+          <h2>특이사항 / 상담 메모</h2><textarea id="specialNote"></textarea>
+        </div>
       </div>
-<div class="button-group">
-<button type="submit">💾 저장하기</button>
+
+      <div class="tab-section" id="tab-summary">
+        <div style="margin-top: 40px;">
+          <h2>📋 월별 목표 타임라인</h2>
+          <ul id="timelineList" class="timeline-list"></ul>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="submit">💾 저장하기</button>
+        <button id="downloadPdfBtn">📄 IEP PDF 다운로드</button>
+        <button id="downloadCsvBtn">📤 전체 기록 CSV 다운로드</button>
+        <button id="downloadSummaryPdfBtn">📄 학기 요약 리포트 PDF</button>
+      </div>
+
+      <div id="status"></div>
     </form>
-
-    <div style="text-align:center; margin-top:30px;">
-      <button id="downloadPdfBtn">📄 IEP PDF 다운로드</button>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
-    <div id="status" style="margin-top:20px; font-weight:bold;"></div>
-    
-    <div class="button-group">
-      <button id="downloadSummaryPdfBtn">📄 학기 요약 리포트 PDF</button>
-    </div>
-
-
-      <button id="downloadCsvBtn">📤 전체 기록 CSV 다운로드</button>
-    </div>
-
   </div>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
