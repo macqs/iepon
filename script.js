@@ -1,6 +1,6 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVJdHEkFv82iH96ReHKSiKirFHzkEMmY4",
@@ -15,14 +15,40 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 저장 함수
+// 🟢 학생 추가 (Firebase 저장)
+document.getElementById('addStudentBtn').addEventListener('click', async () => {
+  const name = document.getElementById('newStudentName').value.trim();
+  if (name) {
+    await setDoc(doc(db, "students", name), { name: name });
+    loadStudents(); // 추가 후 다시 불러오기
+    document.getElementById('newStudentName').value = '';
+  }
+});
+
+// 🟢 학생 목록 불러오기 (Firebase에서)
+async function loadStudents() {
+  const studentSelect = document.getElementById('studentSelect');
+  studentSelect.innerHTML = '<option value="">학생 선택</option>';
+  const querySnapshot = await getDocs(collection(db, "students"));
+  querySnapshot.forEach((doc) => {
+    const name = doc.data().name;
+    const option = document.createElement('option');
+    option.value = name;
+    option.textContent = name;
+    studentSelect.appendChild(option);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', loadStudents);
+
+// 🟢 IEP 저장
 export async function saveIEP(student, semester, month, data) {
   const key = `${student}_${semester}_${month}`;
   await setDoc(doc(db, "iep_records", key), data);
   document.getElementById('status').innerText = '✅ Firebase에 저장되었습니다!';
 }
 
-// 불러오기 함수
+// 🟢 IEP 불러오기
 export async function loadIEP(student, semester, month) {
   const key = `${student}_${semester}_${month}`;
   const docRef = doc(db, "iep_records", key);
