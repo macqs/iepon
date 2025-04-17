@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>IEPON html2pdf 테스트</title>
+  <title>IEPON 통합 시스템</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
   <style>
@@ -12,21 +12,62 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 5px #ccc;
+      margin-bottom: 20px;
+    }
+    textarea, select, input {
+      width: 100%; margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>IEPON PDF 생성 (html2pdf.js)</h1>
-    <div id="capture-area">
-      <h2>✅ 한글 PDF 테스트</h2>
-      <p>이 문장은 html2pdf.js를 사용해 PDF로 출력됩니다.</p>
-      <p>안녕하세요, IEPON 시스템에서 출력된 문서입니다.</p>
+    <h1>IEPON 시스템 (Firebase + PDF)</h1>
+
+    <div>
+      <input type="text" id="newStudentName" placeholder="학생 이름 추가" />
+      <button id="addStudentBtn">➕ 추가</button>
     </div>
-    <button id="download">📄 PDF 다운로드</button>
+
+    <div>
+      <label>학생 선택</label>
+      <select id="studentSelect"><option value="">선택</option></select>
+
+      <label>학기</label>
+      <select id="semesterSelect">
+        <option>1학기</option><option>2학기</option>
+      </select>
+
+      <label>월</label>
+      <select id="monthSelect">
+        <option>3월</option><option>4월</option><option>5월</option><option>6월</option>
+        <option>7월</option><option>8월</option><option>9월</option><option>10월</option>
+        <option>11월</option><option>12월</option><option>1월</option><option>2월</option>
+      </select>
+    </div>
+
+    <div id="capture-area">
+      <h2>📋 IEP 내용</h2>
+      <label>현행수준</label><textarea id="currentLevel"></textarea>
+      <label>학기 목표</label><textarea id="semesterGoal"></textarea>
+      <label>학기 평가</label><textarea id="semesterEval"></textarea>
+      <label>월 목표</label><textarea id="monthGoal"></textarea>
+      <label>교육 내용</label><textarea id="monthContent"></textarea>
+      <label>교육 방법</label><textarea id="monthMethod"></textarea>
+      <label>평가 준거</label><textarea id="monthCriteria"></textarea>
+      <label>월 평가</label><textarea id="monthEval"></textarea>
+      <label>강화 포인트</label><input type="number" id="reinforcePoint" value="0" />
+      <label>특이사항/상담</label><textarea id="specialNote"></textarea>
+    </div>
+
+    <div>
+      <button id="saveBtn">💾 저장</button>
+      <button id="download">📄 PDF 다운로드</button>
+      <div id="status"></div>
+    </div>
   </div>
 
-  <!-- html2pdf CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
