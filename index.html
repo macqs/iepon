@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>IEPON 시스템</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>IEPON: 개별화교육계획 시스템</h1>
+
+    <div class="selectors">
+      <label>학생 선택</label>
+      <select id="studentSelect">
+        <option value="">학생 선택</option>
+      </select>
+
+      <label>학기 선택</label>
+      <select id="semesterSelect">
+        <option value="1학기">1학기</option>
+        <option value="2학기">2학기</option>
+      </select>
+
+      <label>월 선택</label>
+      <select id="monthSelect">
+        <option value="">--</option>
+        <option value="3월">3월</option>
+        <option value="4월">4월</option>
+        <option value="5월">5월</option>
+        <option value="6월">6월</option>
+        <option value="7월">7월</option>
+        <option value="8월">8월</option>
+        <option value="9월">9월</option>
+        <option value="10월">10월</option>
+        <option value="11월">11월</option>
+        <option value="12월">12월</option>
+        <option value="1월">1월</option>
+        <option value="2월">2월</option>
+      </select>
+    </div>
+
+    <form id="iepForm">
+      <h2>학기별 계획</h2>
+      <label>현행수준</label>
+      <textarea id="currentLevel" rows="2"></textarea>
+
+      <label>학기 목표</label>
+      <textarea id="semesterGoal" rows="2"></textarea>
+
+      <label>학기 평가</label>
+      <textarea id="semesterEval" rows="2"></textarea>
+
+      <h2>월별 계획</h2>
+      <label>교육 목표</label>
+      <textarea id="monthGoal" rows="2"></textarea>
+
+      <label>교육 내용</label>
+      <textarea id="monthContent" rows="2"></textarea>
+
+      <label>교육 방법</label>
+      <textarea id="monthMethod" rows="2"></textarea>
+
+      <label>평가 준거</label>
+      <textarea id="monthCriteria" rows="2"></textarea>
+
+      <label>교육 평가</label>
+      <textarea id="monthEval" rows="2"></textarea>
+
+      <button type="submit">저장하기</button>
+    </form>
+
+    <div id="status" style="margin-top:20px; font-weight:bold;"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
