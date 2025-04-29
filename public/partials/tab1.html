@@ -1,0 +1,195 @@
+<!-- partials/tab1.html -->
+<div id="tab1" class="tab-pane">
+    <form id="form-tab1">
+        <!-- 1. 학생 인적사항 -->
+        <h5 class="mb-3">1. 학생 인적사항</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="student-name" class="form-label">학생명</label>
+                <input type="text" id="student-name" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">성별</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="student-gender" id="gender-m" value="M">
+                        <label class="form-check-label" for="gender-m">남</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="student-gender" id="gender-f" value="F">
+                        <label class="form-check-label" for="gender-f">여</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="student-birth" class="form-label">생년월일</label>
+                <input type="date" id="student-birth" class="form-control">
+            </div>
+
+            <div class="col-md-4">
+                <label for="student-age-actual" class="form-label">만 나이</label>
+                <input type="text" id="student-age-actual" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label for="student-age-korean" class="form-label">세는 나이</label>
+                <input type="text" id="student-age-korean" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label for="student-deferral" class="form-label">유예기간 (년)</label>
+                <input type="text" id="student-deferral" class="form-control" readonly>
+            </div>
+
+            <div class="col-md-4">
+                <label for="student-class" class="form-label">통합학급</label>
+                <input type="text" id="student-class" class="form-control" placeholder="예: 1학년 1반">
+            </div>
+            <div class="col-md-4">
+                <label for="homeroom-teacher" class="form-label">통합학급 담임명</label>
+                <input type="text" id="homeroom-teacher" class="form-control">
+            </div>
+
+            <!-- 주소 API 연동 -->
+            <div class="col-md-3">
+                <label for="postcode" class="form-label">우편번호</label>
+                <div class="input-group">
+                    <input type="text" id="postcode" class="form-control" readonly>
+                    <button type="button" id="address-search-btn" class="btn btn-outline-secondary">주소 검색</button>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <label for="address" class="form-label">도로명 주소</label>
+                <input type="text" id="address" class="form-control" readonly>
+            </div>
+            <div class="col-md-12">
+                <label for="address-detail" class="form-label">상세주소</label>
+                <input type="text" id="address-detail" class="form-control">
+            </div>
+        </div>
+
+        <!-- 2. 특수교육대상자 & 보호자 -->
+        <h5 class="mt-4 mb-3">2. 특수교육대상자 &amp; 보호자</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="disability-type-special" class="form-label">특수교육 대상자 유형</label>
+                <select id="disability-type-special" class="form-select">
+                    <option value="">선택</option>
+                    <option>지적장애</option>
+                    <option>자폐성장애</option>
+                    <option>청각장애</option>
+                    <option>시각장애</option>
+                    <option>뇌병변장애</option>
+                    <option>언어장애</option>
+                    <option>정서·행동장애</option>
+                    <option>학습장애</option>
+                    <option>발달지체</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="selection-date" class="form-label">선정일자</label>
+                <input type="date" id="selection-date" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">복지카드 유무</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="welfare-card" id="card-yes" value="yes">
+                        <label class="form-check-label" for="card-yes">유</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="welfare-card" id="card-no" value="no">
+                        <label class="form-check-label" for="card-no">무</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="disability-type-welfare" class="form-label">복지부 장애유형</label>
+                <select id="disability-type-welfare" class="form-select">
+                    <option value="">선택</option>
+                    <option>지체장애</option>
+                    <option>뇌병변장애</option>
+                    <option>시각장애</option>
+                    <option>청각장애</option>
+                    <option>언어장애</option>
+                    <option>지적장애</option>
+                    <option>자폐성장애</option>
+                    <option>정신장애</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="welfare-issue-date" class="form-label">복지카드 발급일자</label>
+                <input type="date" id="welfare-issue-date" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+                <label for="guardian-name" class="form-label">보호자 성명</label>
+                <input type="text" id="guardian-name" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="guardian-relation" class="form-label">관계</label>
+                <select id="guardian-relation" class="form-select">
+                    <option value="">선택</option>
+                    <option value="부">부</option>
+                    <option value="모">모</option>
+                    <option value="조부">조부</option>
+                    <option value="조모">조모</option>
+                    <option value="직접입력">직접입력</option>
+                </select>
+                <input type="text" id="guardian-relation-custom" class="form-control mt-2 d-none" placeholder="에: 법적후견인 등">
+            </div>
+            <div class="col-md-12">
+                <label for="guardian-contact" class="form-label">연락처</label>
+                <input type="tel" id="guardian-contact" class="form-control" placeholder="010-1234-5678" pattern="010-\d{4}-\d{4}" maxlength="13">
+            </div>
+        </div>
+
+        <!-- 3. 특수교육 관련서비스 현황 -->
+        <h5 class="mt-4 mb-3">3. 특수교육 관련서비스 현황</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">보조인력 지원</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="assistant-support-yn" id="assistant-yes" value="yes">
+                        <label class="form-check-label" for="assistant-yes">유</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="assistant-support-yn" id="assistant-no" value="no" checked>
+                        <label class="form-check-label" for="assistant-no">무</label>
+                    </div>
+                </div>
+                <select id="assistant-type" class="form-select mt-2 d-none">
+                    <option value="">선택</option>
+                    <option value="special-ed-assistant">특수교육실무원</option>
+                    <option value="social-service">사회복무요원</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">통학비 지원</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="transport-support" id="transport-yes" value="yes">
+                        <label class="form-check-label" for="transport-yes">유</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="transport-support" id="transport-no" value="no" checked>
+                        <label class="form-check-label" for="transport-no">무</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="ed-dept-therapy" class="form-label">교육청 치료지원 기관명</label>
+                <input type="text" id="ed-dept-therapy" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="welfare-therapy" class="form-label">복지부 치료지원 기관명</label>
+                <input type="text" id="welfare-therapy" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="free-pass-center" class="form-label">자유수강권 사용 기관명</label>
+                <input type="text" id="free-pass-center" class="form-control">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">저장</button>
+    </form>
+</div>

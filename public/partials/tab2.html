@@ -1,0 +1,35 @@
+<!-- public/partials/tab2.html -->
+<div id="tab2" class="tab-pane">
+    <h5 class="mb-3">월별 개별화교육목표 수립</h5>
+
+    <!-- 학생명 표시 -->
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">학생명</label>
+        <div class="col-sm-10">
+            <input type="text" id="tab2-student-name" class="form-control" disabled>
+        </div>
+    </div>
+
+    <!-- 과목 선택 -->
+    <div class="mb-3 row">
+        <label for="tab2-subject" class="col-sm-2 col-form-label">과목</label>
+        <div class="col-sm-10">
+            <select id="tab2-subject" class="form-select">
+                <option value="">선택</option>
+                <option value="국어">국어</option>
+                <option value="수학">수학</option>
+                <option value="사회">사회</option>
+                <option value="과학">과학</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 동적 계획 행들 -->
+    <div id="plan-rows" class="mb-3"></div>
+
+    <!-- 추가/저장 버튼 -->
+    <div class="mb-4">
+        <button type="button" id="add-plan-btn" class="btn btn-outline-primary me-2">월별 계획 추가</button>
+        <button type="button" id="save-tab2-btn" class="btn btn-primary">저장</button>
+    </div>
+</div>
